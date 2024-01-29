@@ -11,7 +11,7 @@ INSERT INTO likes(userid,tweetid) VALUES (2,1);
 SELECT * FROM likes;
 
 --Obi-Wan retweets Vader’s tweet.
-INSERT INTO tweets(userid,content,original_tweetid_for_retweet) VALUES (3,"I find your lack of faith disturbing.",1);
+INSERT INTO tweets(userid,original_tweetid_for_retweet) VALUES (3,1);
 
 -- Leia follows Vader and Vader follows Obi-Wan.
 INSERT INTO follow(follower_userid,following_userid) VALUES (2,1) , (1,3);
