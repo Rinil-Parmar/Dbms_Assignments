@@ -3,8 +3,8 @@
 --Fetch all users name from database.
 SELECT username FROM users;
 
---Fetch all tweets of user by user id most recent tweets first.
-SELECT * FROM tweets WHERE userid = 1 ORDER BY created_at DESC;
+--Fetch all tweets of user by user id most recent tweets first.(In this retweet is not included.)
+SELECT * FROM tweets WHERE userid = 3 AND original_tweetid_for_retweet IS NULL ORDER BY created_at DESC;
 
 --Fetch like count of particular tweet by tweet id.
 SELECT tweetid,COUNT(*) AS like_count
@@ -32,9 +32,9 @@ SELECT content AS comment_content
 FROM Tweets
 WHERE parent_tweetid_for_comment = 3;
 
---Fetch user’s timeline (All tweets from users whom I am following with tweet content and user name who has tweeted it)
+--Fetch user’s timeline (All tweets from users whom I am following with tweet content and user name who has tweeted it)(Here retweet is not included.)
 SELECT Users.username, Tweets.content
 FROM Users
 JOIN Tweets ON Users.userid = Tweets.userid
 JOIN Followers ON Users.userid = Followers.following_userid
-WHERE Followers.follower_userid = 1;
+WHERE Followers.follower_userid = 1 AND original_tweetid_for_retweet IS NULL;
